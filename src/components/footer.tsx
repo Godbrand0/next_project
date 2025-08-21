@@ -31,7 +31,7 @@ const sections = {
 
 export default function FooterSection() {
   return (
-    <footer className="bg-[#b7d5d6] flex flex-col px-28 space-y-15">
+    <footer className="bg-[#b7d5d6] flex flex-col px-28 space-y-15 transition transform-all duraton-300">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 ">
         {Object.entries(sections).map(([title, items]) => (
           <div key={title}>

@@ -1,20 +1,39 @@
+"use client"; // Important for Next.js 13+ app directory
+
+import { FaShoppingCart } from "react-icons/fa";
+import { FiMenu, FiX } from "react-icons/fi";
+
+import ResponsiveMenu from "./responsiveMenu";
+import { useState } from "react";
+
 export default function NavBar() {
+   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="flex justify-between items-center px-7 py-4 bg-[#b7d5d6] fixed top-0 w-full z-10">
+    <nav className="flex justify-between items-center px-7 py-4 bg-[#b7d5d6] fixed top-0 w-full z-25">
       <h1 className="text-4xl font-bold">trip & fun</h1>
 
-      <ul className="flex space-x-6 font-bold text-xl">
-        <li className="cursor-pointer hover:text-gray-900">Home</li>
-        <li className="cursor-pointer hover:text-gray-900">Catalog</li>
-        <li className="cursor-pointer hover:text-gray-900">Collection</li>
-        <li className="cursor-pointer hover:text-gray-900">Sale</li>
-        <li className="cursor-pointer hover:text-gray-900">Blog</li>
-        <li className="cursor-pointer hover:text-gray-900">Contact Us</li>
-      </ul>
+      <ResponsiveMenu setIsOpen={setIsOpen} isOpen={isOpen} />
 
-      <div className="flex items-center font-bold space-x-4">
-        <h1>My cart:</h1>
-        <span className="py-1 px-3 rounded-[50%] bg-black">0</span>
+      <div className="flex gap-2">
+        <button
+          className="lg:hidden p-2 text-2xl "
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? (
+            <FiX className="cursor-pointer" />
+          ) : (
+            <FiMenu className="cursor-pointer hover:text-gray-900" />
+          )}
+        </button>
+
+        <div className="flex items-center relative">
+          <h1 className="hidden lg:block">My cart:</h1>
+          <FaShoppingCart className="text-xl lg:hidden cursor-pointer hover:text-gray-900" />
+          <span className="py-[0.1rem] px-[0.4rem] rounded-[50%] text-xs bg-black">
+            0
+          </span>
+        </div>
       </div>
     </nav>
   );
